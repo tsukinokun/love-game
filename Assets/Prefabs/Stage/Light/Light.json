@@ -1,0 +1,9 @@
+{
+    "DirectionalLightComponent": {
+        "direction": { "x": 0.3, "y": -0.8, "z": 0.5 },
+        "color": { "x": 1, "y": 0.96, "z": 0.9 },
+        "intensity": 2.5,
+        "castShadow": true,
+        "shadow": { "distance": 1500 }
+    }
+}

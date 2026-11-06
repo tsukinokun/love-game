@@ -1,0 +1,9 @@
+{
+    "Entities": [
+        { "key": "Background", "value": "Assets/Prefabs/Common/Background/Prefab.json" },
+        { "key": "Logo", "value": "Assets/Prefabs/Title/Logo/Prefab.json" },
+        { "key": "StartButton", "value": "Assets/Prefabs/Title/StartButton/Prefab.json" },
+        { "key": "ContinueButton", "value": "Assets/Prefabs/Title/ContinueButton/Prefab.json" },
+        { "key": "QuitButton", "value": "Assets/Prefabs/Title/QuitButton/Prefab.json" }
+    ]
+}

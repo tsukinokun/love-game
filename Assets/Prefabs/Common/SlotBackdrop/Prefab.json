@@ -1,0 +1,7 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Common/Origin.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Common/FullScreen.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Common/SlotBackdrop/Sprite.json" }
+    ]
+}

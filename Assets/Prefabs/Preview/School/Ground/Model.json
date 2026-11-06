@@ -1,0 +1,8 @@
+{
+    "ModelComponent": {
+        "modelHandle": "Assets/Models/Box.obj",
+        "visible": true,
+        "opacity": 1,
+        "materials": [ "Assets/Materials/Floor_park.tmat" ]
+    }
+}

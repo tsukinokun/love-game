@@ -1,0 +1,70 @@
+; 凛: 喫茶店で働く、少し不器用な人
+*event_1
+@stage cafe
+@show rin center
+小さな喫茶店のカウンターで、店員の女性がカップを置いた。 #1389
+凛「……ブレンド。熱いから、気をつけて」 #0b30
+{player}「ありがとうございます。いい香りですね」 #fc10
+凛「そう。豆、今朝から替えた。気づいたの、あなたが初めて」 #165d
+
+@choice #eb4c
+- 前の味も好きでしたよ -> event_1_before
+  affection.rin += 5
+- たまたまです -> event_1_chance
+  affection.rin += 2
+
+*event_1_before
+凛「……覚えてるんだ。そっか」 #af11
+@jump event_1_end
+
+*event_1_chance
+凛「たまたまでも、嬉しいよ」 #9037
+
+*event_1_end
+@set progress.rin = 1
+@end
+
+*event_2
+@stage cafe
+@show rin center
+@camera close
+閉店後の店内に、コーヒーの香りだけが残っていた。 #b2ed
+凛「試作のケーキ、味見してほしい。{player}の感想が、いちばん信用できるから」 #378a
+{player}「私でいいんですか?」 #a7fb
+凛「あなたがいい」 #e956
+
+@choice #eb4d
+- すごくおいしいです -> event_2_good
+  affection.rin += 5
+- 少しだけ甘すぎるかも -> event_2_honest
+  affection.rin += 3
+
+*event_2_good
+凛「……よかった。顔、見ればわかる」 #2491
+@jump event_2_end
+
+*event_2_honest
+凛「やっぱり。そういうところが、いいと思う」 #3c31
+
+*event_2_end
+@set progress.rin = 2
+@end
+
+*daily
+@stage cafe
+@show rin center
+凛「いつもの席、空けておいた」 #fc4e
+言葉は少ないのに、不思議と落ち着く時間だった。 #939f
+@set affection.rin += 1
+@end
+
+*ending
+@stage cafe
+@show rin center
+@camera close
+看板を裏返したあと、凛さんはカップを二つ並べた。 #40dc
+凛「ずっと、言えなかったことがある」 #9b72
+凛「あなたが来る日を、毎日待ってた。これからは、待つんじゃなくて一緒にいたい」 #ffb4
+{player}「……はい。私もです」 #68d1
+カップから立つ湯気の向こうで、凛さんが初めてはっきりと笑った。 #0967
+@end

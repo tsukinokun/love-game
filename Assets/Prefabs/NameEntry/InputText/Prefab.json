@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/NameEntry/InputText/Transform.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/NameEntry/InputText/Font.json" }
+    ]
+}

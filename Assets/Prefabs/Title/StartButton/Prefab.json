@@ -1,0 +1,11 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Title/StartButton/Transform.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Title/StartButton/Rect.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Common/ButtonSprite.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Common/ButtonFont.json" },
+        { "key": "UITextComponent", "value": "Assets/Prefabs/Title/StartButton/Text.json" },
+        { "key": "UIButtonFeedbackComponent", "value": "null" },
+        { "key": "PointerTargetComponent", "value": "null" }
+    ]
+}

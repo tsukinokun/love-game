@@ -1,0 +1,7 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Stage/MessagePanel/Transform.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Stage/MessagePanel/Rect.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Stage/MessagePanel/Sprite.json" }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "ui": {
+        "charsPerSecond": 40,
+        "fullWidthPerLine": 39,
+        "noLineStart": "、。，．・：；！？!?,.)）」』】〕〉》ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮ…‥～",
+        "noLineEnd": "「『（(【〔〈《",
+        "listCenterX": 960,
+        "listGap": 24,
+        "choiceCenterY": 400,
+        "slotCenterY": 540,
+        "placeCenterY": 500,
+        "statusY": 820,
+        "statusStep": 52,
+        "candidateX": 590,
+        "candidateY": 500,
+        "dayFormat": "{day}日目 / {lastDay}日",
+        "statusFormat": "{name}  好感度 {affection}",
+        "slotFilled": "スロット{slot}  {day}日目  {name}",
+        "slotEmpty": "スロット{slot}  (空き)",
+        "slotClose": "閉じる"
+    }
+}

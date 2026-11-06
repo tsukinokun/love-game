@@ -1,0 +1,16 @@
+{
+    "Entities": [
+        { "key": "Floor", "value": "Assets/Prefabs/Preview/Cafe/Floor/Prefab.json" },
+        { "key": "Wall0", "value": "Assets/Prefabs/Preview/Cafe/Wall0/Prefab.json" },
+        { "key": "Wall1", "value": "Assets/Prefabs/Preview/Cafe/Wall1/Prefab.json" },
+        { "key": "Wall2", "value": "Assets/Prefabs/Preview/Cafe/Wall2/Prefab.json" },
+        { "key": "Wall3", "value": "Assets/Prefabs/Preview/Cafe/Wall3/Prefab.json" },
+        { "key": "Table1", "value": "Assets/Prefabs/Preview/Cafe/Table1/Prefab.json" },
+        { "key": "ChairA", "value": "Assets/Prefabs/Preview/Cafe/ChairA/Prefab.json" },
+        { "key": "ChairB", "value": "Assets/Prefabs/Preview/Cafe/ChairB/Prefab.json" },
+        { "key": "Table2", "value": "Assets/Prefabs/Preview/Cafe/Table2/Prefab.json" },
+        { "key": "ChairC", "value": "Assets/Prefabs/Preview/Cafe/ChairC/Prefab.json" },
+        { "key": "ChairD", "value": "Assets/Prefabs/Preview/Cafe/ChairD/Prefab.json" },
+        { "key": "Counter", "value": "Assets/Prefabs/Preview/Cafe/Counter/Prefab.json" }
+    ]
+}

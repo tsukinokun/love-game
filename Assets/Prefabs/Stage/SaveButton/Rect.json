@@ -1,0 +1,6 @@
+{
+    "UIRectComponent": {
+        "size": { "x": 220, "y": 64 },
+        "pivot": { "x": 0.5, "y": 0.5 }
+    }
+}

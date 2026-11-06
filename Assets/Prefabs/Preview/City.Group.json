@@ -1,0 +1,18 @@
+{
+    "Entities": [
+        { "key": "Ground", "value": "Assets/Prefabs/Preview/City/Ground/Prefab.json" },
+        { "key": "Road0", "value": "Assets/Prefabs/Preview/City/Road0/Prefab.json" },
+        { "key": "Road1", "value": "Assets/Prefabs/Preview/City/Road1/Prefab.json" },
+        { "key": "Road2", "value": "Assets/Prefabs/Preview/City/Road2/Prefab.json" },
+        { "key": "Road3", "value": "Assets/Prefabs/Preview/City/Road3/Prefab.json" },
+        { "key": "Road4", "value": "Assets/Prefabs/Preview/City/Road4/Prefab.json" },
+        { "key": "BuildingA", "value": "Assets/Prefabs/Preview/City/BuildingA/Prefab.json" },
+        { "key": "BuildingB", "value": "Assets/Prefabs/Preview/City/BuildingB/Prefab.json" },
+        { "key": "BuildingC", "value": "Assets/Prefabs/Preview/City/BuildingC/Prefab.json" },
+        { "key": "BuildingD", "value": "Assets/Prefabs/Preview/City/BuildingD/Prefab.json" },
+        { "key": "Bench", "value": "Assets/Prefabs/Preview/City/Bench/Prefab.json" },
+        { "key": "Light", "value": "Assets/Prefabs/Preview/City/Light/Prefab.json" },
+        { "key": "Bush", "value": "Assets/Prefabs/Preview/City/Bush/Prefab.json" },
+        { "key": "Car", "value": "Assets/Prefabs/Preview/City/Car/Prefab.json" }
+    ]
+}

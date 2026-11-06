@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Preview/Room/Rug/Transform.json" },
+        { "key": "ModelComponent", "value": "Assets/Prefabs/Preview/Room/Rug/Model.json" }
+    ]
+}

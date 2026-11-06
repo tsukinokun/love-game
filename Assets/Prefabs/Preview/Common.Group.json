@@ -1,0 +1,8 @@
+{
+    "Entities": [
+        { "key": "Label", "value": "Assets/Prefabs/Preview/Label/Prefab.json" },
+        { "key": "Light", "value": "Assets/Prefabs/Stage/Light/Prefab.json" },
+        { "key": "Sky", "value": "Assets/Prefabs/Stage/Sky/Prefab.json" },
+        { "key": "Camera", "value": "Assets/Prefabs/Stage/Camera/Prefab.json" }
+    ]
+}

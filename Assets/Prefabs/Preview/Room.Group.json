@@ -1,0 +1,15 @@
+{
+    "Entities": [
+        { "key": "Floor", "value": "Assets/Prefabs/Preview/Room/Floor/Prefab.json" },
+        { "key": "WallBack", "value": "Assets/Prefabs/Preview/Room/WallBack/Prefab.json" },
+        { "key": "WallLeft", "value": "Assets/Prefabs/Preview/Room/WallLeft/Prefab.json" },
+        { "key": "Bed", "value": "Assets/Prefabs/Preview/Room/Bed/Prefab.json" },
+        { "key": "Rug", "value": "Assets/Prefabs/Preview/Room/Rug/Prefab.json" },
+        { "key": "Desk", "value": "Assets/Prefabs/Preview/Room/Desk/Prefab.json" },
+        { "key": "Chair", "value": "Assets/Prefabs/Preview/Room/Chair/Prefab.json" },
+        { "key": "Shelf", "value": "Assets/Prefabs/Preview/Room/Shelf/Prefab.json" },
+        { "key": "Lamp", "value": "Assets/Prefabs/Preview/Room/Lamp/Prefab.json" },
+        { "key": "Picture", "value": "Assets/Prefabs/Preview/Room/Picture/Prefab.json" },
+        { "key": "Couch", "value": "Assets/Prefabs/Preview/Room/Couch/Prefab.json" }
+    ]
+}

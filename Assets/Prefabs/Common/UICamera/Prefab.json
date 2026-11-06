@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Common/UICamera/Transform.json" },
+        { "key": "CameraComponent", "value": "Assets/Prefabs/Common/UICamera/Camera.json" }
+    ]
+}

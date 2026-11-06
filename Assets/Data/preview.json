@@ -1,0 +1,10 @@
+{
+    "preview": {
+        "shots": [
+            { "name": "1 部屋 (KayKit Furniture)", "group": "Assets/Prefabs/Preview/Room.Group.json", "position": { "x": 80, "y": 330, "z": -720 }, "target": { "x": 0, "y": 80, "z": 120 } },
+            { "name": "2 喫茶店 (KayKit Restaurant)", "group": "Assets/Prefabs/Preview/Cafe.Group.json", "position": { "x": 0, "y": 340, "z": -860 }, "target": { "x": 0, "y": 90, "z": 120 } },
+            { "name": "3 街 (KayKit City)", "group": "Assets/Prefabs/Preview/City.Group.json", "position": { "x": 0, "y": 420, "z": -700 }, "target": { "x": 0, "y": 100, "z": 300 } },
+            { "name": "4 校舎 (それっぽい3D校舎)", "group": "Assets/Prefabs/Preview/School.Group.json", "position": { "x": 1500, "y": 160, "z": -6500 }, "target": { "x": 0, "y": 500, "z": 0 } }
+        ]
+    }
+}

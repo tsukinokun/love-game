@@ -1,0 +1,6 @@
+{
+    "Entities": [
+        { "key": "UICamera", "value": "Assets/Prefabs/Common/UICamera/Prefab.json" },
+        { "key": "Fade", "value": "Assets/Prefabs/Common/Fade/Prefab.json" }
+    ]
+}

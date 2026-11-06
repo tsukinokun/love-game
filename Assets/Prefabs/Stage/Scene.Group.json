@@ -1,0 +1,14 @@
+{
+    "Entities": [
+        { "key": "Floor", "value": "Assets/Prefabs/Stage/Floor/Prefab.json" },
+        { "key": "Wall", "value": "Assets/Prefabs/Stage/Wall/Prefab.json" },
+        { "key": "Light", "value": "Assets/Prefabs/Stage/Light/Prefab.json" },
+        { "key": "Sky", "value": "Assets/Prefabs/Stage/Sky/Prefab.json" },
+        { "key": "Camera", "value": "Assets/Prefabs/Stage/Camera/Prefab.json" },
+        { "key": "MessagePanel", "value": "Assets/Prefabs/Stage/MessagePanel/Prefab.json" },
+        { "key": "NamePanel", "value": "Assets/Prefabs/Stage/NamePanel/Prefab.json" },
+        { "key": "NameLabel", "value": "Assets/Prefabs/Stage/NameLabel/Prefab.json" },
+        { "key": "MessageText", "value": "Assets/Prefabs/Stage/MessageText/Prefab.json" },
+        { "key": "SaveButton", "value": "Assets/Prefabs/Stage/SaveButton/Prefab.json" }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "Entities": [
+        { "key": "Ground", "value": "Assets/Prefabs/Preview/School/Ground/Prefab.json" },
+        { "key": "Building", "value": "Assets/Prefabs/Preview/School/Building/Prefab.json" },
+        { "key": "Person", "value": "Assets/Prefabs/Preview/School/Person/Prefab.json" }
+    ]
+}

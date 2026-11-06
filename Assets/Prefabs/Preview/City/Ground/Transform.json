@@ -1,0 +1,7 @@
+{
+    "TransformComponent": {
+        "position": { "x": 0, "y": -10, "z": 0 },
+        "rotation": { "x": 0, "y": 0.000000, "z": 0, "w": 1.000000 },
+        "scale": { "x": 6000, "y": 10, "z": 6000 }
+    }
+}

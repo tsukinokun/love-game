@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Preview/City/Bench/Transform.json" },
+        { "key": "ModelComponent", "value": "Assets/Prefabs/Preview/City/Bench/Model.json" }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/NameEntry/Heading/Transform.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/NameEntry/Heading/Font.json" },
+        { "key": "UITextComponent", "value": "Assets/Prefabs/NameEntry/Heading/Text.json" }
+    ]
+}

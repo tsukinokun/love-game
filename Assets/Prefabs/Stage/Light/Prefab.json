@@ -1,0 +1,5 @@
+{
+    "Components": [
+        { "key": "DirectionalLightComponent", "value": "Assets/Prefabs/Stage/Light/Light.json" }
+    ]
+}

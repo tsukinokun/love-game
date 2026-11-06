@@ -1,0 +1,11 @@
+.build/
+bin/
+bin-int/
+packages/
+Cache/
+Logs/
+*.user
+.vs/
+
+# 規約で再配布が禁止されている素材。公開リポジトリには入れない
+Assets/Models/School/

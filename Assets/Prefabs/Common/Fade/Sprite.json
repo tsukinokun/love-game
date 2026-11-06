@@ -1,0 +1,11 @@
+{
+    "SpriteComponent": {
+        "textureHandle": "Assets/UI/White.png",
+        "blendMode": 0,
+        "space": 0,
+        "tintColor": { "x": 0, "y": 0, "z": 0, "w": 1 },
+        "uvRect": { "x": 0, "y": 0, "z": 1, "w": 1 },
+        "sortOrder": 10000,
+        "raycastTarget": false
+    }
+}

@@ -1,0 +1,68 @@
+; あかり: 図書館で出会う、物静かな先輩
+*event_1
+@stage library
+@show akari center
+本棚の前で、背の高い女性が一冊の本に手を伸ばしていた。 #8697
+あかり「あ、ごめんなさい。これ、あなたも読みたかった?」 #0ca7
+{player}「いえ、ちょうど隣の本を見ていただけで」 #5c48
+あかり「そう。この作家、好きなの?」 #46ee
+
+@choice #eb4c
+- 実は初めて読むんです -> event_1_new
+  affection.akari += 5
+- 有名なので気になって -> event_1_famous
+  affection.akari += 2
+
+*event_1_new
+あかり「じゃあ、最初に読むならこっちがいいと思う。私の一番好きな本」 #88f7
+@jump event_1_end
+
+*event_1_famous
+あかり「ふふ、正直だね。読み終わったら感想を聞かせて」 #5705
+
+*event_1_end
+@set progress.akari = 1
+@hide akari
+その日の帰り道、借りた本の重さが少しだけ嬉しかった。 #f022
+@end
+
+*event_2
+@stage library
+@show akari center
+@camera close
+閉館の音楽が流れる中、あかりさんは窓際の席で待っていた。 #fdb7
+あかり「{player}さん。あの本、読んでくれた?」 #6181
+{player}「はい。最後の手紙の場面で泣いてしまって」 #2ad2
+あかり「……うん。私も、あそこで泣いた」 #5657
+あかり「本の話をこんなにできる人、初めてかもしれない」 #3f67
+
+@choice #eb4d
+- 今度、一緒に本屋へ行きませんか -> event_2_invite
+  affection.akari += 5
+- また話を聞かせてください -> event_2_end
+
+*event_2_invite
+あかり「……うん。行きたい。すごく」 #7a8b
+
+*event_2_end
+@set progress.akari = 2
+@end
+
+*daily
+@stage library
+@show akari center
+あかり「今日も来たんだ。隣、空いてるよ」 #e073
+静かなページの音だけが、二人の間に流れていた。 #41d6
+@set affection.akari += 1
+@end
+
+*ending
+@stage library
+@show akari center
+@camera close
+最後の日、あかりさんは一枚のしおりを差し出した。 #946f
+あかり「{player}さんと読む本が、いちばん好き」 #55c1
+あかり「これからも、隣にいてくれる?」 #b584
+{player}「はい。ずっと」 #d2be
+重ねた手のひらの下で、しおりが小さく温かかった。 #cab0
+@end

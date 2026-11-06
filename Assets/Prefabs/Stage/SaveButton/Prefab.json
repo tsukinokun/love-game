@@ -1,0 +1,11 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Stage/SaveButton/Transform.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Stage/SaveButton/Rect.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Common/ButtonSprite.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Common/ButtonFont.json" },
+        { "key": "UITextComponent", "value": "Assets/Prefabs/Stage/SaveButton/Text.json" },
+        { "key": "UIButtonFeedbackComponent", "value": "null" },
+        { "key": "PointerTargetComponent", "value": "null" }
+    ]
+}

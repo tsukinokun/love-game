@@ -1,0 +1,4 @@
+ShadingModel = Toon
+BaseColor = 0.40, 0.80, 0.55, 1
+ToonThreshold = 0.4
+ToonSmoothness = 0.05

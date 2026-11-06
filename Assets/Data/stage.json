@@ -1,0 +1,21 @@
+{
+    "stage": {
+        "defaultStage": "library",
+        "defaultCamera": "wide",
+        "cameraSpeed": 4,
+        "stages": [
+            { "key": "library", "value": "Assets/Materials/Floor_library.tmat" },
+            { "key": "park", "value": "Assets/Materials/Floor_park.tmat" },
+            { "key": "cafe", "value": "Assets/Materials/Floor_cafe.tmat" }
+        ],
+        "positions": [
+            { "key": "left", "value": -110 },
+            { "key": "center", "value": 0 },
+            { "key": "right", "value": 110 }
+        ],
+        "cameraShots": [
+            { "key": "wide", "value": { "position": { "x": 0, "y": 130, "z": -430 }, "target": { "x": 0, "y": 95, "z": 0 } } },
+            { "key": "close", "value": { "position": { "x": 0, "y": 150, "z": -230 }, "target": { "x": 0, "y": 125, "z": 0 } } }
+        ]
+    }
+}

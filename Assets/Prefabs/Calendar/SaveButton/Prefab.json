@@ -1,0 +1,11 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Calendar/SaveButton/Transform.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Calendar/SaveButton/Rect.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Common/ButtonSprite.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Common/ButtonFont.json" },
+        { "key": "UITextComponent", "value": "Assets/Prefabs/Calendar/SaveButton/Text.json" },
+        { "key": "UIButtonFeedbackComponent", "value": "null" },
+        { "key": "PointerTargetComponent", "value": "null" }
+    ]
+}

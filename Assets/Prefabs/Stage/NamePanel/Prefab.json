@@ -1,0 +1,8 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Stage/NamePanel/Transform.json" },
+        { "key": "UIRectComponent", "value": "Assets/Prefabs/Stage/NamePanel/Rect.json" },
+        { "key": "SpriteComponent", "value": "Assets/Prefabs/Stage/NamePanel/Sprite.json" },
+        { "key": "UIVisibilityComponent", "value": "null" }
+    ]
+}

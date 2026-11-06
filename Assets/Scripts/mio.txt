@@ -1,0 +1,69 @@
+; 澪: 公園で走っている、まっすぐな性格の人
+*event_1
+@stage park
+@show mio center
+朝の公園で、ジョギング中の女性が足を止めた。 #61b9
+澪「おはよう! 毎朝ここ通ってるよね?」 #9340
+{player}「はい。あの、よく見てますね」 #8586
+澪「そりゃ見るよ。いつも同じベンチで空を見上げてるから、気になってた」 #ec0a
+
+@choice #eb4c
+- 一緒に走ってみたいです -> event_1_run
+  affection.mio += 5
+- 空を見るのが好きなんです -> event_1_sky
+  affection.mio += 2
+
+*event_1_run
+澪「ほんと!? じゃあ明日、ここに七時ね。約束!」 #247c
+@jump event_1_end
+
+*event_1_sky
+澪「いいね、それ。今度、いちばん空が広い場所を教えてあげる」 #3088
+
+*event_1_end
+@set progress.mio = 1
+@end
+
+*event_2
+@stage park
+@show mio center
+@camera close
+夕方の公園は、オレンジ色に染まっていた。 #667e
+澪「ねえ、{player}。ここが、前に話した場所」 #55c1
+{player}「本当に、空が広い……」 #427d
+澪「ここ、誰かに教えたの初めてなんだ」 #def9
+
+@choice #eb4d
+- 連れてきてくれて嬉しいです -> event_2_happy
+  affection.mio += 5
+- どうして私に? -> event_2_why
+  affection.mio += 3
+
+*event_2_happy
+澪「……そう言われると、なんか照れるな」 #42d3
+@jump event_2_end
+
+*event_2_why
+澪「どうしてだろ。一緒に見たいって、思ったから」 #aaf7
+
+*event_2_end
+@set progress.mio = 2
+@end
+
+*daily
+@stage park
+@show mio center
+澪「お、来た来た! 今日も一周いっとく?」 #938c
+二人分の足音が、並木道に軽く響いた。 #8902
+@set affection.mio += 1
+@end
+
+*ending
+@stage park
+@show mio center
+@camera close
+いつもの場所で、澪は珍しく黙って空を見ていた。 #c521
+澪「あのさ。走るのも、空を見るのも、これからは全部{player}と一緒がいい」 #91fe
+{player}「私も、同じことを言おうと思ってました」 #721e
+澪は声を上げて笑い、それから私の手をぎゅっと握った。 #3b98
+@end

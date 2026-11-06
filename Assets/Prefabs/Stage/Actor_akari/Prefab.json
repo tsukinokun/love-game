@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Stage/ActorTransform.json" },
+        { "key": "ModelComponent", "value": "Assets/Prefabs/Stage/Actor_akari/Model.json" }
+    ]
+}

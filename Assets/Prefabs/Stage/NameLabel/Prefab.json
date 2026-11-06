@@ -1,0 +1,7 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Stage/NameLabel/Transform.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Stage/NameLabel/Font.json" },
+        { "key": "UIVisibilityComponent", "value": "null" }
+    ]
+}
