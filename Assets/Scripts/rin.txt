@@ -50,6 +50,35 @@
 @set progress.rin = 2
 @end
 
+*event_3
+@stage cafe
+@show rin center
+凛「……定休日に、豆を買いに行く。一緒に、来る?」 #72f9
+@choice #eb4e
+- 来週はどうですか -> event_3_next
+- 再来週なら空いています -> event_3_later
+
+*event_3_next
+@appoint date_1 1
+@jump event_3_end
+
+*event_3_later
+@appoint date_1 2
+
+*event_3_end
+凛「……うん。待ってる」 #f41d
+@set progress.rin = 3
+@end
+
+*date_1
+@stage cafe
+@show rin center
+@camera close
+約束の日、凛さんは店の外で見る服が少し新鮮だった。 #db4a
+凛「今日は、店員じゃないから」 #24b7
+@set affection.rin += 3
+@end
+
 *daily
 @stage cafe
 @show rin center

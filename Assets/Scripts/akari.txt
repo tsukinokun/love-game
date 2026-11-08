@@ -48,6 +48,35 @@
 @set progress.akari = 2
 @end
 
+*event_3
+@stage library
+@show akari center
+あかり「今度の週末、一緒に本屋へ行かない?」 #dc90
+@choice #eb4e
+- 来週はどうですか -> event_3_next
+- 再来週なら空いています -> event_3_later
+
+*event_3_next
+@appoint date_1 1
+@jump event_3_end
+
+*event_3_later
+@appoint date_1 2
+
+*event_3_end
+あかり「うん。楽しみにしてる」 #5c3d
+@set progress.akari = 3
+@end
+
+*date_1
+@stage library
+@show akari center
+@camera close
+約束の日、あかりさんは少し早く待ち合わせ場所に来ていた。 #d434
+あかり「この棚、いつか誰かと来たかったの」 #4894
+@set affection.akari += 3
+@end
+
 *daily
 @stage library
 @show akari center

@@ -7,6 +7,8 @@
 #include <UI/TextLayout.hpp>
 #include <UI/UIHelpers.hpp>
 
+#include <algorithm>
+
 #include <Tsukino/BuiltIn/ECS/Component/TransformComponent.hpp>
 #include <Tsukino/BuiltIn/ECS/UI/UICanvas.hpp>
 #include <Tsukino/Core/Input/InputSystem.hpp>
@@ -26,11 +28,6 @@ namespace LoveGame {
         constexpr const char* kCalendarLayout = "Assets/Prefabs/Calendar/Scene.Group.json";
         constexpr const char* kPlaceButton    = "Assets/Prefabs/Common/Button/Prefab.json";
         constexpr const char* kStatusLabel    = "Assets/Prefabs/Calendar/Status/Prefab.json";
-
-        int ReadVariable(const GameState& state, const std::string& name) {
-            const auto it = state.variables.find(name);
-            return it != state.variables.end() ? it->second : 0;
-        }
     }    // namespace
 
     //--------------------------------------------------------------
@@ -98,31 +95,82 @@ namespace LoveGame {
         const GameState&        state = m_game.state;
         const Script::UiConfig& ui    = m_game.ui;
 
-        std::string day = UI::Format(ui.dayFormat, "day", std::to_string(state.day));
-        day             = UI::Format(day, "lastDay", std::to_string(m_game.config.lastDay));
-        UI::SetText(Registry(), Find("DayLabel"), TextLayout::ToWide(day));
+        const std::string date = m_game.FormatDate(state.week);
+        std::string       week = UI::Format(ui.weekFormat, "date", date);
+        week                   = UI::Format(week, "current", std::to_string(state.week));
+        week                   = UI::Format(week, "total", std::to_string(m_game.calendar.TotalWeeks()));
+        UI::SetText(Registry(), Find("DayLabel"), TextLayout::ToWide(week));
 
-        std::vector<std::wstring> labels;
+        if(!state.appointments.empty()) UI::SetText(Registry(), Find("Appointment"), TextLayout::ToWide(AppointmentText()));
+
+        // 能力値は左、好感度（試作の確認用）は右に並べる
+        float statY = ui.statusY;
+        for(const Script::StatDef& stat : m_game.calendar.stats) {
+            m_statLabels.push_back(CreateStatus(ui.statX, statY));
+            statY += ui.statusStep;
+        }
+        RefreshStats();
+
         float                     y = ui.statusY;
+        std::vector<std::wstring> places;
         for(const Script::CharacterDef& character : m_game.characters.characters) {
-            labels.push_back(TextLayout::ToWide(character.place));
+            places.push_back(TextLayout::ToWide(character.place));
 
-            // 試作の確認用に好感度を見せる
             std::string status = UI::Format(ui.statusFormat, "name", character.name);
-            status             = UI::Format(status, "affection", std::to_string(ReadVariable(state, "affection." + character.id)));
-
-            Tsukino::ECS::Entity label = Prefabs().Instantiate(kStatusLabel, Registry());
-            UI::SetText(Registry(), label, TextLayout::ToWide(status));
-
-            ECS::TransformComponent& transform = Registry().GetComponent<ECS::TransformComponent>(label);
-            transform.position.y               = y;
-            transform.dirty                    = true;
+            status             = UI::Format(status, "affection", std::to_string(state.Get("affection." + character.id)));
+            UI::SetText(Registry(), CreateStatus(ui.affectionX, y), TextLayout::ToWide(status));
             y += ui.statusStep;
         }
-        m_places.Show(m_scene, Prefabs(), kPlaceButton, labels, ui, ui.placeCenterY);
+
+        std::vector<std::wstring> actions;
+        for(const Script::ActionDef& action : m_game.calendar.actions) actions.push_back(TextLayout::ToWide(action.label));
+
+        m_actions.Show(m_scene, Prefabs(), kPlaceButton, actions, ui, ui.actionCenterX, ui.placeCenterY);
+        m_places.Show(m_scene, Prefabs(), kPlaceButton, places, ui, ui.placeCenterX, ui.placeCenterY);
+    }
+
+    Tsukino::ECS::Entity CalendarScene::CreateStatus(float x, float y) {
+        Tsukino::ECS::Entity label = Prefabs().Instantiate(kStatusLabel, Registry());
+
+        ECS::TransformComponent& transform = Registry().GetComponent<ECS::TransformComponent>(label);
+        transform.position.x               = x;
+        transform.position.y               = y;
+        transform.dirty                    = true;
+        return label;
+    }
+
+    void CalendarScene::RefreshStats() {
+        for(std::size_t i = 0; i < m_statLabels.size(); ++i) {
+            const Script::StatDef& stat = m_game.calendar.stats[i];
+
+            std::string text = UI::Format(m_game.ui.statFormat, "name", stat.name);
+            text             = UI::Format(text, "value", std::to_string(m_game.state.Get("stat." + stat.id)));
+            UI::SetText(Registry(), m_statLabels[i], TextLayout::ToWide(text));
+        }
+    }
+
+    std::string CalendarScene::AppointmentText() const {
+        const Appointment& next = m_game.state.appointments.front();
+
+        std::string name;
+        for(const Script::CharacterDef& character : m_game.characters.characters) {
+            if(character.script == next.scriptFile) name = character.name;
+        }
+        return UI::Format(UI::Format(m_game.ui.appointmentFormat, "date", m_game.FormatDate(next.week)), "name", name);
     }
 
     void CalendarScene::Tick(float) {
+        // 結果の表示中はセーブを受け付けない。能力値を増やした状態のまま同じ週をやり直せてしまう
+        if(m_showingResult) {
+            const Tsukino::Input::InputSystem& input = *m_context->inputSystem;
+            if(input.IsKeyPressed(Tsukino::Input::KeyCode::LButton) || input.IsKeyPressed(Tsukino::Input::KeyCode::Enter) ||
+               input.IsKeyPressed(Tsukino::Input::KeyCode::Space)) {
+                m_showingResult = false;
+                GoTo(m_game.FinishWeek());
+            }
+            return;
+        }
+
         if(UpdateSlotPanel()) return;
 
         if(UI::WasClicked(Registry(), Find("SaveButton"))) {
@@ -130,30 +178,59 @@ namespace LoveGame {
             return;
         }
 
+        const int action = m_actions.ClickedIndex();
+        if(action >= 0) {
+            PerformAction(m_game.calendar.actions[static_cast<std::size_t>(action)]);
+            return;
+        }
+
         const int index = m_places.ClickedIndex();
         if(index >= 0) StartEvent(m_game.characters.characters[static_cast<std::size_t>(index)]);
+    }
+
+    void CalendarScene::PerformAction(const Script::ActionDef& action) {
+        const Script::UiConfig& ui = m_game.ui;
+
+        std::wstring text = TextLayout::Wrap(TextLayout::ToWide(action.result), ui.fullWidthPerLine, TextLayout::ToWide(ui.noLineStart),
+                                             TextLayout::ToWide(ui.noLineEnd));
+
+        for(const auto& [id, amount] : action.effects) {
+            int&      value  = m_game.state.variables["stat." + id];
+            const int before = value;
+            value            = std::min(value + amount, m_game.config.statMax);
+
+            const Script::StatDef* stat   = m_game.calendar.FindStat(id);
+            std::string            effect = UI::Format(ui.effectFormat, "name", stat != nullptr ? stat->name : id);
+            effect                        = UI::Format(effect, "value", std::to_string(value - before));
+            text += L"\n" + TextLayout::ToWide(effect);
+        }
+        text += L"\n\n" + TextLayout::ToWide(ui.resultHint);
+
+        m_actions.Clear();
+        m_places.Clear();
+        for(const char* name : {"Prompt", "Appointment", "ActionHeader", "PlaceHeader"}) UI::SetText(Registry(), Find(name), L"");
+        UI::SetText(Registry(), Find("Result"), text);
+        RefreshStats();
+        m_showingResult = true;
     }
 
     void CalendarScene::StartEvent(const Script::CharacterDef& character) {
         Script::Program program;
         if(!m_game.LoadProgram(character.script, program)) return;
 
-        GameState& state     = m_game.state;
-        const int  progress  = ReadVariable(state, "progress." + character.id);
-        const int  affection = ReadVariable(state, "affection." + character.id);
-
-        // 次のイベントが無いか、好感度が足りなければ日常会話にする
+        const int         progress = m_game.state.Get("progress." + character.id);
         const std::string next     = "event_" + std::to_string(progress + 1);
-        const bool        hasEvent = program.labels.count(next) != 0 && affection >= progress * m_game.config.affectionPerEvent;
 
-        state.inConversation = true;
-        state.isEnding       = false;
-        state.scriptFile     = character.script;
-        state.startLabel     = hasEvent ? next : "daily";
-        state.lineId.clear();
-        state.stageName.clear();
-        state.cameraShot.clear();
-        state.shownActors.clear();
+        // 次のイベントが無いか、条件を満たさなければ日常会話にする
+        bool hasEvent = program.labels.count(next) != 0;
+        const auto requires_it = character.eventRequires.find(next);
+        if(hasEvent && requires_it != character.eventRequires.end()) {
+            for(const auto& [variable, value] : requires_it->second) {
+                if(m_game.state.Get(variable) < value) hasEvent = false;
+            }
+        }
+
+        m_game.BeginConversation(character.script, hasEvent ? next : "daily", false);
         GoTo(SceneName::kStage);
     }
 }    // namespace LoveGame

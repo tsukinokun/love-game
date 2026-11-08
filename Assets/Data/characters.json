@@ -1,7 +1,25 @@
 {
     "characters": [
-        { "id": "akari", "name": "あかり", "place": "図書館", "prefab": "Assets/Prefabs/Stage/Actor_akari/Prefab.json", "script": "akari.txt" },
-        { "id": "mio", "name": "澪", "place": "公園", "prefab": "Assets/Prefabs/Stage/Actor_mio/Prefab.json", "script": "mio.txt" },
-        { "id": "rin", "name": "凛", "place": "喫茶店", "prefab": "Assets/Prefabs/Stage/Actor_rin/Prefab.json", "script": "rin.txt" }
+        {
+            "id": "akari", "name": "あかり", "place": "図書館", "prefab": "Assets/Prefabs/Stage/Actor_akari/Prefab.json", "script": "akari.txt",
+            "eventRequires": [
+                { "key": "event_2", "value": [ { "key": "affection.akari", "value": 5 }, { "key": "stat.intellect", "value": 6 } ] },
+                { "key": "event_3", "value": [ { "key": "affection.akari", "value": 10 }, { "key": "stat.intellect", "value": 12 } ] }
+            ]
+        },
+        {
+            "id": "mio", "name": "澪", "place": "公園", "prefab": "Assets/Prefabs/Stage/Actor_mio/Prefab.json", "script": "mio.txt",
+            "eventRequires": [
+                { "key": "event_2", "value": [ { "key": "affection.mio", "value": 5 }, { "key": "stat.sports", "value": 6 } ] },
+                { "key": "event_3", "value": [ { "key": "affection.mio", "value": 10 }, { "key": "stat.sports", "value": 12 } ] }
+            ]
+        },
+        {
+            "id": "rin", "name": "凛", "place": "喫茶店", "prefab": "Assets/Prefabs/Stage/Actor_rin/Prefab.json", "script": "rin.txt",
+            "eventRequires": [
+                { "key": "event_2", "value": [ { "key": "affection.rin", "value": 5 }, { "key": "stat.charm", "value": 6 } ] },
+                { "key": "event_3", "value": [ { "key": "affection.rin", "value": 10 }, { "key": "stat.charm", "value": 12 } ] }
+            ]
+        }
     ]
 }

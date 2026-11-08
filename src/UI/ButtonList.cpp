@@ -13,7 +13,7 @@ namespace LoveGame::UI {
     namespace ECS = Tsukino::BuiltIn::ECS;
 
     void ButtonList::Show(Tsukino::ECS::Scene& scene, Tsukino::Engine::ECS::Prefab::PrefabFactory& factory, const std::string& prefab,
-                          const std::vector<std::wstring>& labels, const Script::UiConfig& config, float centerY) {
+                          const std::vector<std::wstring>& labels, const Script::UiConfig& config, float centerX, float centerY) {
         Clear();
         m_scene = &scene;
 
@@ -33,7 +33,7 @@ namespace LoveGame::UI {
         float y = centerY - total * 0.5f + height * 0.5f;
         for(Tsukino::ECS::Entity button : m_buttons) {
             ECS::TransformComponent& transform = registry.GetComponent<ECS::TransformComponent>(button);
-            transform.position                 = hlslpp::float3(config.listCenterX, y, 0.0f);
+            transform.position                 = hlslpp::float3(centerX, y, 0.0f);
             transform.dirty                    = true;
             y += step;
         }

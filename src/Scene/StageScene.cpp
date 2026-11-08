@@ -4,6 +4,7 @@
 //--------------------------------------------------------------
 #include <Scene/StageScene.hpp>
 
+#include <Script/Validator.hpp>
 #include <UI/TextLayout.hpp>
 #include <UI/UIHelpers.hpp>
 
@@ -128,7 +129,7 @@ namespace LoveGame {
             m_message.RevealAll();
             std::vector<std::wstring> labels;
             for(const Script::ChoiceOption& option : op->options) labels.push_back(Expand(option.text));
-            m_choices.Show(m_scene, Prefabs(), "Assets/Prefabs/Common/Button/Prefab.json", labels, m_game.ui, m_game.ui.choiceCenterY);
+            m_choices.Show(m_scene, Prefabs(), "Assets/Prefabs/Common/Button/Prefab.json", labels, m_game.ui, m_game.ui.listCenterX, m_game.ui.choiceCenterY);
             return;
         }
     }
@@ -145,36 +146,18 @@ namespace LoveGame {
             return;
         }
 
-        ++state.day;
-        if(state.day <= m_game.config.lastDay) {
-            GoTo(SceneName::kCalendar);
+        GoTo(m_game.FinishWeek());
+    }
+
+    void StageScene::ExecuteAppoint(const Script::Op& op) {
+        int weeks = 0;
+        if(!Script::ParsePositiveInt(op.args[1], weeks)) {
+            Tsukino::Core::Log::Warn("Invalid week count for @appoint: " + op.args[1] + ". The appointment was ignored.");
             return;
         }
-
-        // 最終日を終えたら、好感度が最も高い相手のエンディングへ
-        const Script::CharacterDef* best      = nullptr;
-        int                         bestValue = 0;
-        for(const Script::CharacterDef& character : m_game.characters.characters) {
-            const auto it    = state.variables.find("affection." + character.id);
-            const int  value = it != state.variables.end() ? it->second : 0;
-            if(best == nullptr || value > bestValue) {
-                best      = &character;
-                bestValue = value;
-            }
+        if(!m_game.AddAppointment(m_game.state.scriptFile, op.args[0], weeks)) {
+            Tsukino::Core::Log::Warn("Appointment is after the last week and was ignored: " + op.args[0]);
         }
-        if(best == nullptr) {
-            GoTo(SceneName::kTitle);
-            return;
-        }
-
-        state.inConversation = true;
-        state.isEnding       = true;
-        state.scriptFile     = best->script;
-        state.startLabel     = "ending";
-        state.stageName.clear();
-        state.cameraShot.clear();
-        state.shownActors.clear();
-        GoTo(SceneName::kStage);
     }
 
     void StageScene::ExecuteCommand(const Script::Op& op) {
@@ -182,6 +165,7 @@ namespace LoveGame {
         else if(op.command == "show") ApplyActor(op.args[0], op.args[1]);
         else if(op.command == "hide") HideActor(op.args[0]);
         else if(op.command == "camera") ApplyCamera(op.args[0], false);
+        else if(op.command == "appoint") ExecuteAppoint(op);
         else Tsukino::Core::Log::Info("Script command is not implemented yet: @" + op.command);
     }
 

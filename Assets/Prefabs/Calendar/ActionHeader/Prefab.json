@@ -1,0 +1,7 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Calendar/ActionHeader/Transform.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Calendar/ActionHeader/Font.json" },
+        { "key": "UITextComponent", "value": "Assets/Prefabs/Calendar/ActionHeader/Text.json" }
+    ]
+}

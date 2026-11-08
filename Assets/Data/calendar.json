@@ -1,0 +1,28 @@
+{
+    "calendar": {
+        "months": [
+            { "name": "4月", "weeks": 4 },
+            { "name": "5月", "weeks": 4 },
+            { "name": "6月", "weeks": 4 },
+            { "name": "7月", "weeks": 4 },
+            { "name": "8月", "weeks": 4 },
+            { "name": "9月", "weeks": 4 },
+            { "name": "10月", "weeks": 4 },
+            { "name": "11月", "weeks": 4 },
+            { "name": "12月", "weeks": 4 },
+            { "name": "1月", "weeks": 4 },
+            { "name": "2月", "weeks": 4 },
+            { "name": "3月", "weeks": 4 }
+        ],
+        "stats": [
+            { "id": "intellect", "name": "学力" },
+            { "id": "sports", "name": "運動" },
+            { "id": "charm", "name": "魅力" }
+        ],
+        "actions": [
+            { "label": "勉強する", "result": "放課後の図書室で、ノートと向き合った。", "effects": [ { "key": "intellect", "value": 3 } ] },
+            { "label": "体を動かす", "result": "グラウンドを走って、気持ちのいい汗をかいた。", "effects": [ { "key": "sports", "value": 3 } ] },
+            { "label": "おしゃれを研究する", "result": "雑誌を読み込んで、鏡の前で髪型を試した。", "effects": [ { "key": "charm", "value": 3 } ] }
+        ]
+    }
+}

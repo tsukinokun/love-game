@@ -86,6 +86,45 @@ namespace {
         if(ec) errors += Report(prefabDir, "フォルダを読めません");
         return errors;
     }
+
+    //! @brief 暦と自分磨きの定義を確認する
+    int CheckCalendar(const fs::path& path, const CalendarConfig& calendar) {
+        int errors = 0;
+        if(calendar.TotalWeeks() <= 0) errors += Report(path, "暦に週がありません");
+        for(const MonthDef& month : calendar.months) {
+            if(month.weeks <= 0) errors += Report(path, month.name + " の週数は1以上にしてください");
+        }
+        if(calendar.actions.empty()) errors += Report(path, "自分磨きの行動がありません");
+        for(const ActionDef& action : calendar.actions) {
+            for(const auto& [stat, amount] : action.effects) {
+                if(calendar.FindStat(stat) == nullptr) errors += Report(path, action.label + " の能力値が未定義です: " + stat);
+            }
+        }
+        return errors;
+    }
+
+    //! @brief イベントの条件のラベルと変数名を確認する
+    int CheckEventRequires(const fs::path& assets, const CharacterTable& characters, const CalendarConfig& calendar) {
+        const fs::path path   = assets / "Data/characters.json";
+        int            errors = 0;
+        for(const CharacterDef& character : characters.characters) {
+            std::string text;
+            if(!ReadTextFile(assets / "Scripts" / character.script, text)) continue;    // 台本が無いことは別に報告済み
+
+            const ParseResult result = Parse(character.script, text);
+            for(const auto& [label, conditions] : character.eventRequires) {
+                if(result.program.labels.count(label) == 0) {
+                    errors += Report(path, character.id + " の eventRequires のラベルが台本にありません: " + label);
+                }
+                for(const auto& [variable, value] : conditions) {
+                    const bool isStat      = variable.starts_with("stat.") && calendar.FindStat(variable.substr(5)) != nullptr;
+                    const bool isAffection = variable.starts_with("affection.") && characters.FindById(variable.substr(10)) != nullptr;
+                    if(!isStat && !isAffection) errors += Report(path, character.id + " の eventRequires の変数が未定義です: " + variable);
+                }
+            }
+        }
+        return errors;
+    }
 }    // namespace
 
 int main(int argc, char** argv) {
@@ -106,9 +145,11 @@ int main(int argc, char** argv) {
     GameConfig     game;
     UiConfig       ui;
     StageConfig    stage;
+    CalendarConfig calendar;
     std::string    error;
     if(!LoadCharacterTable(assets / "Data/characters.json", characters, error) || !LoadGameConfig(assets / "Data/game.json", game, error) ||
-       !LoadUiConfig(assets / "Data/ui.json", ui, error) || !LoadStageConfig(assets / "Data/stage.json", stage, error)) {
+       !LoadUiConfig(assets / "Data/ui.json", ui, error) || !LoadStageConfig(assets / "Data/stage.json", stage, error) ||
+       !LoadCalendarConfig(assets / "Data/calendar.json", calendar, error)) {
         std::printf("%s\n", error.c_str());
         return 1;
     }
@@ -123,6 +164,8 @@ int main(int argc, char** argv) {
     if(stage.stages.count(stage.defaultStage) == 0) errorCount += Report(assets / "Data/stage.json", "defaultStage が未定義です");
     if(stage.cameraShots.count(stage.defaultCamera) == 0) errorCount += Report(assets / "Data/stage.json", "defaultCamera が未定義です");
 
+    errorCount += CheckCalendar(assets / "Data/calendar.json", calendar);
+    errorCount += CheckEventRequires(assets, characters, calendar);
     errorCount += CheckPrefabs(assets / "Prefabs", root);
 
     std::vector<fs::path> scripts;

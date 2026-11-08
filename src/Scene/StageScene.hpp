@@ -28,6 +28,7 @@ namespace LoveGame {
         void Advance();
         void Finish();
         void ExecuteCommand(const Script::Op& op);
+        void ExecuteAppoint(const Script::Op& op);
 
         void ApplyStage(const std::string& stageName);
         void ApplyActor(const std::string& id, const std::string& position);

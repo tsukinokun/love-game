@@ -9,6 +9,7 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/types/map.hpp>
 #include <cereal/types/string.hpp>
+#include <cereal/types/vector.hpp>
 
 #include <Windows.h>
 #include <ShlObj.h>
@@ -18,9 +19,16 @@
 
 namespace LoveGame {
     template <class Archive>
+    void serialize(Archive& archive, Appointment& appointment) {
+        archive(cereal::make_nvp("week", appointment.week), cereal::make_nvp("scriptFile", appointment.scriptFile),
+                cereal::make_nvp("label", appointment.label));
+    }
+
+    template <class Archive>
     void serialize(Archive& archive, GameState& state) {
-        archive(cereal::make_nvp("playerName", state.playerName), cereal::make_nvp("day", state.day),
-                cereal::make_nvp("variables", state.variables), cereal::make_nvp("inConversation", state.inConversation),
+        archive(cereal::make_nvp("playerName", state.playerName), cereal::make_nvp("week", state.week),
+                cereal::make_nvp("variables", state.variables), cereal::make_nvp("appointments", state.appointments),
+                cereal::make_nvp("inConversation", state.inConversation),
                 cereal::make_nvp("isEnding", state.isEnding), cereal::make_nvp("scriptFile", state.scriptFile),
                 cereal::make_nvp("startLabel", state.startLabel), cereal::make_nvp("lineId", state.lineId),
                 cereal::make_nvp("stageName", state.stageName), cereal::make_nvp("cameraShot", state.cameraShot),

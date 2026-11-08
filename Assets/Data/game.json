@@ -1,7 +1,6 @@
 {
     "game": {
-        "lastDay": 7,
-        "affectionPerEvent": 5,
+        "statMax": 100,
         "maxNameLength": 8,
         "slotCount": 3,
         "fadeSeconds": 0.3

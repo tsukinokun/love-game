@@ -5,6 +5,7 @@
 #include <Script/CharacterTable.hpp>
 
 #include <cereal/archives/json.hpp>
+#include <cereal/types/map.hpp>
 #include <cereal/types/string.hpp>
 #include <cereal/types/vector.hpp>
 
@@ -14,7 +15,7 @@ namespace LoveGame::Script {
     template <class Archive>
     void serialize(Archive& archive, CharacterDef& def) {
         archive(cereal::make_nvp("id", def.id), cereal::make_nvp("name", def.name), cereal::make_nvp("place", def.place),
-                cereal::make_nvp("prefab", def.prefab), cereal::make_nvp("script", def.script));
+                cereal::make_nvp("prefab", def.prefab), cereal::make_nvp("script", def.script), cereal::make_nvp("eventRequires", def.eventRequires));
     }
 
     const CharacterDef* CharacterTable::FindById(const std::string& id) const {

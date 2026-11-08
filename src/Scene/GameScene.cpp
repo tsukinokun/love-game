@@ -110,7 +110,7 @@ namespace LoveGame {
             std::string label;
             if(SaveSystem::Load(slot, saved)) {
                 label = UI::Format(ui.slotFilled, "slot", number);
-                label = UI::Format(label, "day", std::to_string(saved.day));
+                label = UI::Format(label, "date", m_game.FormatDate(saved.week));
                 label = UI::Format(label, "name", saved.playerName);
             } else {
                 label = UI::Format(ui.slotEmpty, "slot", number);
@@ -120,7 +120,7 @@ namespace LoveGame {
         labels.push_back(TextLayout::ToWide(ui.slotClose));
 
         m_slotBackdrop = Prefabs().Instantiate(kSlotBackdrop, Registry());
-        m_slotPanel.Show(m_scene, Prefabs(), kSlotButton, labels, ui, ui.slotCenterY);
+        m_slotPanel.Show(m_scene, Prefabs(), kSlotButton, labels, ui, ui.listCenterX, ui.slotCenterY);
     }
 
     bool GameScene::UpdateSlotPanel() {

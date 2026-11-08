@@ -4,6 +4,7 @@
 //--------------------------------------------------------------
 #include <Script/Validator.hpp>
 
+#include <charconv>
 #include <unordered_map>
 
 namespace LoveGame::Script {
@@ -13,7 +14,7 @@ namespace LoveGame::Script {
         //! @brief 演出命令ごとの引数の数
         const std::unordered_map<std::string, std::size_t>& CommandArity() {
             static const std::unordered_map<std::string, std::size_t> table = {
-                {"stage", 1}, {"show", 2}, {"hide", 1}, {"camera", 1}, {"bgm", 1}, {"se", 1},
+                {"stage", 1}, {"show", 2}, {"hide", 1}, {"camera", 1}, {"bgm", 1}, {"se", 1}, {"appoint", 2},
             };
             return table;
         }
@@ -26,6 +27,12 @@ namespace LoveGame::Script {
             return false;
         }
     }    // namespace
+
+    bool ParsePositiveInt(const std::string& text, int& value) {
+        const char* const end    = text.data() + text.size();
+        const auto        result = std::from_chars(text.data(), end, value);
+        return result.ec == std::errc{} && result.ptr == end && value >= 1;
+    }
 
     std::vector<Diagnostic> Validate(const Program& program, const CharacterTable& characters, const StageConfig& stage) {
         std::vector<Diagnostic> errors;
@@ -67,6 +74,12 @@ namespace LoveGame::Script {
                         errors.push_back({op.sourceLine, "未定義の舞台です: " + op.args[0]});
                     } else if(op.command == "camera" && stage.cameraShots.count(op.args[0]) == 0) {
                         errors.push_back({op.sourceLine, "未定義のカメラです: " + op.args[0]});
+                    } else if(op.command == "appoint") {
+                        checkLabel(op.sourceLine, op.args[0]);
+                        int weeks = 0;
+                        if(!ParsePositiveInt(op.args[1], weeks)) {
+                            errors.push_back({op.sourceLine, "@appoint の週数は1以上の整数にしてください: " + op.args[1]});
+                        }
                     }
                     break;
                 }

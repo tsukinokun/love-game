@@ -20,9 +20,10 @@ namespace LoveGame::UI {
         //! @param prefab  [in] ボタンの雛形
         //! @param labels  [in] ボタンの文字
         //! @param config  [in] 並びの設定
+        //! @param centerX [in] 並びの中心の X 座標
         //! @param centerY [in] 並びの中心の Y 座標
         void Show(Tsukino::ECS::Scene& scene, Tsukino::Engine::ECS::Prefab::PrefabFactory& factory, const std::string& prefab,
-                  const std::vector<std::wstring>& labels, const Script::UiConfig& config, float centerY);
+                  const std::vector<std::wstring>& labels, const Script::UiConfig& config, float centerX, float centerY);
 
         //! @brief ボタンをすべて消す
         void Clear();

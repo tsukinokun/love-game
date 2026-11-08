@@ -50,6 +50,35 @@
 @set progress.mio = 2
 @end
 
+*event_3
+@stage park
+@show mio center
+澪「ねえ、今度の休み、遠くまで走りに行こうよ」 #dbc1
+@choice #eb4e
+- 来週はどうですか -> event_3_next
+- 再来週なら空いています -> event_3_later
+
+*event_3_next
+@appoint date_1 1
+@jump event_3_end
+
+*event_3_later
+@appoint date_1 2
+
+*event_3_end
+澪「決まり! 忘れないでよ」 #8446
+@set progress.mio = 3
+@end
+
+*date_1
+@stage park
+@show mio center
+@camera close
+約束の日、澪は大きく手を振って駆けてきた。 #2a1c
+澪「今日は一日、{player}を独り占めだ」 #7073
+@set affection.mio += 3
+@end
+
 *daily
 @stage park
 @show mio center

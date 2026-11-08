@@ -1,0 +1,6 @@
+{
+    "Components": [
+        { "key": "TransformComponent", "value": "Assets/Prefabs/Calendar/Result/Transform.json" },
+        { "key": "FontComponent", "value": "Assets/Prefabs/Calendar/Result/Font.json" }
+    ]
+}

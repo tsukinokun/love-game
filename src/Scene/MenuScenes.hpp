@@ -6,6 +6,10 @@
 #include <Scene/GameScene.hpp>
 
 #include <Script/CharacterTable.hpp>
+#include <Script/GameConfig.hpp>
+
+#include <string>
+#include <vector>
 
 namespace LoveGame {
     class TitleScene : public GameScene {
@@ -40,7 +44,14 @@ namespace LoveGame {
 
     private:
         void StartEvent(const Script::CharacterDef& character);
+        void PerformAction(const Script::ActionDef& action);
+        void RefreshStats();
+        std::string AppointmentText() const;
+        Tsukino::ECS::Entity CreateStatus(float x, float y);
 
-        UI::ButtonList m_places;
+        UI::ButtonList                    m_actions;
+        UI::ButtonList                    m_places;
+        std::vector<Tsukino::ECS::Entity> m_statLabels;
+        bool                              m_showingResult = false;    // 自分磨きの結果を表示中か
     };
 }    // namespace LoveGame

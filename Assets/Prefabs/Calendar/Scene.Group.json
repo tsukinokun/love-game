@@ -3,6 +3,10 @@
         { "key": "Background", "value": "Assets/Prefabs/Common/Background/Prefab.json" },
         { "key": "DayLabel", "value": "Assets/Prefabs/Calendar/DayLabel/Prefab.json" },
         { "key": "Prompt", "value": "Assets/Prefabs/Calendar/Prompt/Prefab.json" },
+        { "key": "Appointment", "value": "Assets/Prefabs/Calendar/Appointment/Prefab.json" },
+        { "key": "ActionHeader", "value": "Assets/Prefabs/Calendar/ActionHeader/Prefab.json" },
+        { "key": "PlaceHeader", "value": "Assets/Prefabs/Calendar/PlaceHeader/Prefab.json" },
+        { "key": "Result", "value": "Assets/Prefabs/Calendar/Result/Prefab.json" },
         { "key": "SaveButton", "value": "Assets/Prefabs/Calendar/SaveButton/Prefab.json" }
     ]
 }

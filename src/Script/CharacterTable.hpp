@@ -4,6 +4,7 @@
 //--------------------------------------------------------------
 #pragma once
 #include <filesystem>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -15,6 +16,9 @@ namespace LoveGame::Script {
         std::string place;       // カレンダーで会える場所
         std::string prefab;      // ブロックの Prefab
         std::string script;      // 台本ファイル名（Assets/Scripts からの相対）
+
+        // イベントのラベル → 必要な変数と値。書いていないイベントは条件なし
+        std::map<std::string, std::map<std::string, int>> eventRequires;
     };
 
     //! @brief characters.json の中身

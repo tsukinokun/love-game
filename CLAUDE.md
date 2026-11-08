@@ -36,10 +36,11 @@ bin\Debug\LoveGame.ScriptCheck.exe --stamp   行IDの付与と検証
 
 | 値 | 置き場所 |
 |---|---|
-| 日数、好感度の閾値、スロット数、暗転時間 | `Assets/Data/game.json` |
+| 能力値の上限、スロット数、暗転時間 | `Assets/Data/game.json` |
+| 暦(月と週数)、能力値の種類、自分磨きの行動 | `Assets/Data/calendar.json` |
 | 文字送り、折り返し、ボタン列の配置、可変の文言 | `Assets/Data/ui.json` |
 | 立ち位置、カメラショット、舞台のマテリアル | `Assets/Data/stage.json` |
-| ヒロインの定義 | `Assets/Data/characters.json` |
+| ヒロインの定義、イベントの条件(`eventRequires`) | `Assets/Data/characters.json` |
 | UIと3D物体の配置、色、大きさ、固定の文言 | `Assets/Prefabs/<シーン>/` |
 
 Prefabの決まりは次のとおり。
@@ -68,12 +69,15 @@ Prefabの決まりは次のとおり。
   affection.akari += 5
 @if affection.akari >= 10 -> ラベル
 @set progress.akari = 1
+@appoint date_1 2       2週後に date_1 の約束を入れる
 @jump ラベル
 @end
 ```
 
 - 行ID（`#xxxx`）は `--stamp` で付ける。セーブ位置に使うので、文章を直しても変えないこと
-- カレンダーは `event_<進行度+1>` を探し、無いか好感度が足りなければ `daily` を再生する。最終日の後は好感度が最も高い相手の `ending` を再生する
+- 毎週、自分磨きかヒロインに会いに行くかを1つ選ぶ。能力値は変数 `stat.<id>` に入るので、台本の `@if` でも読める
+- 会いに行くと `event_<進行度+1>` を探し、無いか `eventRequires` を満たさなければ `daily` を再生する。全週の後は好感度が最も高い相手の `ending` を再生する
+- `@appoint` の週が埋まっていれば次の空いている週へずれる。約束の週になると、選択を挟まずその会話が始まる
 - `@bgm` と `@se` は文法だけ受け付け、音はまだ鳴らない
 
 ## 注意点
